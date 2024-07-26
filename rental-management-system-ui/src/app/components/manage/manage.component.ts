@@ -34,4 +34,35 @@ export class ManageComponent implements OnInit {
       this.itemList = res;
     })
   }
+
+  public selectedCustomer = {
+    "customerId": undefined,
+    "name" : undefined,
+    "city" : undefined,
+    "contact" : undefined
+  }
+
+  public editedCustomer ={
+    "customerId": undefined,
+    "name" : undefined,
+    "city" : undefined,
+    "contact" : undefined
+  }
+
+  selectCustomer(customer : any){
+    if(customer!= null){
+      this.selectedCustomer = customer;
+    }
+
+  }
+
+  updateCustomer(){
+    this.http.put("http://localhost:8080/customer",this.editedCustomer).subscribe(res=>{
+      console.log("updated");
+    });
+  }
+
+
 }
+
+

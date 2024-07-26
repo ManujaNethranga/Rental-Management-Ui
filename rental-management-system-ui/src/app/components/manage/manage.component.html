@@ -14,7 +14,7 @@
             <td>{{customer.name}}</td>
             <td>{{customer.city}}</td>
             <td>{{customer.contact}}</td>
-            <td><button  data-bs-toggle="modal"  [attr.data-bs-target]="'#exampleModalLong'"
+            <td><button  data-bs-toggle="modal" (click)="selectCustomer(customer)"  [attr.data-bs-target]="'#exampleModalLong'"
                     class="btn btn-primary "><i class="bi bi-gear"></i></button></td>
             <td><button  class="btn btn-danger"><i class="bi bi-trash"></i></button>
             </td>
@@ -41,7 +41,7 @@
             <td>{{items.name}}</td>
             <td>{{items.rentalPerDay}}</td>
             <td>{{items.finePerDay}}</td>
-            <td><button  data-bs-toggle="modal"  [attr.data-bs-target]="'#exampleModalLong'"
+            <td><button  data-bs-toggle="modal"   [attr.data-bs-target]="'#exampleModalLong1'"
                     class="btn btn-primary "><i class="bi bi-gear"></i></button></td>
             <td><button  class="btn btn-danger"><i class="bi bi-trash"></i></button>
             </td>
@@ -61,97 +61,34 @@
                 <h5 class="modal-title" id="exampleModalLongTitle">Update Employee Details</h5>
             </div>
             <div class="modal-body">
-                <div class="container pt-0">
-                    <div class="row pt-2">
-                        <div class="col-12">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="firstName" class="form-label">First Name</label>
-                                            <input id="firstName" [(ngModel)]="employee.firstName" value="{{selectedEmployee.firstName}}" type="text"
-                                                class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="lastName" class="form-label">Last Name</label>
-                                            <input id="lastName" [(ngModel)]="employee.lastName" value="{{selectedEmployee.lastName}}" type="text"
-                                                class="form-control" />
-                                        </div>
-                                    </div>
+                <div class="col-12 mt-5 p-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="div">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input id="name" type="text" [(ngModel)]="selectedCustomer.name" value="{{editedCustomer.name}}" class="form-control" />
                                 </div>
                             </div>
-                            <div class="container pt-2">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="div">
-                                            <label for="address" class="form-label">Address</label>
-                                            <input id="address" [(ngModel)]="employee.address" value="{{selectedEmployee.address}}" type="text"
-                                                class="form-control" />
-                                        </div>
-                                    </div>
-
+                        </div>
+                    </div>
+                    <div class="container pt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="div">
+                                    <label for="city" class="form-label">City</label>
+                                    <input id="city" type="text" [(ngModel)]="selectedCustomer.city" value="{{editedCustomer.city}}" class="form-control" />
                                 </div>
                             </div>
-                            <div class="container pt-2">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="age" class="form-label">Age</label>
-                                            <input id="age" [(ngModel)]="employee.age" value="{{selectedEmployee.age}}" type="number"
-                                                class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="phoneNumber" class="form-label">Phone Number</label>
-                                            <input id="phoneNumber" [(ngModel)]="employee.phoneNumber" value="{{selectedEmployee.phoneNumber}}" type="number"
-                                                class="form-control" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container pt-2">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="div ">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input id="email" [(ngModel)]="employee.email"  type="text" value="{{selectedEmployee.email}}" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="container pt-2">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="job-role-id" class="form-label">Job role</label>
-                                            <select id="job-role-id" [(ngModel)]="employee.roleId" value="{{selectedEmployee.roleId}}" class="form-select">
-                                                <option value="J100">Director</option>
-                                                <option value="J101">HR Manager</option>
-                                                <option value="J102">Software Engineer</option>
-                                                <option value="J103">A.S.Engineer</option>
-                                                <option value="J104">Senior Software Engineer</option>
-                                                <option value="J105">Tech Lead</option>
-                                                <option value="J106">Engineering Manager</option>
-                                                <option value="J107">Accountant</option>
-                                                <option value="J108">Clerk</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="div">
-                                            <label for="department-id" class="form-label">Department</label>
-                                            <select id="department-id" value="{{selectedEmployee.departmentId}}" [(ngModel)]="employee.departmentId"
-                                                class="form-select">
-                                                <option value="D0">Accountant Department</option>
-                                                <option value="D1">Engineering Department</option>
-                                                <option value="D2">HR Department</option>
-                                            </select>
-                                        </div>
-                                    </div>
+        
+                        </div>
+                    </div>
+                    <div class="container pt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="div">
+                                    <label for="contact" class="form-label">Contact</label>
+                                    <input id="contact" type="text" [(ngModel)]="selectedCustomer.contact"  value="{{editedCustomer.contact}}" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -159,8 +96,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="loadEmployees()" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
-                <button type="button" (click)="updateEmployee()" data-bs-dismiss="modal" class="btn btn-primary">Update Changes</button>
+                <button type="button" (click)="loadCustomers()" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="updateCustomer()" data-bs-dismiss="modal" class="btn btn-primary">Update Changes</button>
             </div>
         </div>
     </div>
