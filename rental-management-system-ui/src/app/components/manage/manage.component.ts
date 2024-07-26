@@ -42,12 +42,6 @@ export class ManageComponent implements OnInit {
     "contact" : undefined
   }
 
-  public editedCustomer ={
-    "customerId": undefined,
-    "name" : undefined,
-    "city" : undefined,
-    "contact" : undefined
-  }
 
   selectCustomer(customer : any){
     if(customer!= null){
@@ -57,7 +51,8 @@ export class ManageComponent implements OnInit {
   }
 
   updateCustomer(){
-    this.http.put("http://localhost:8080/customer",this.editedCustomer).subscribe(res=>{
+    console.log(this.selectedCustomer);
+    this.http.put("http://localhost:8080/customer",this.selectCustomer).subscribe(res=>{
       console.log("updated");
     });
   }
