@@ -22,7 +22,7 @@
 
 </table>
 
-///////////////////////////////////////////////////////////
+<!-- /////////////////////////////////////////////////////////// -->
 
 <h3 class="mt-4">Manage Items</h3>
 <table class="table table-hover mt-3 table-bordered">
@@ -32,14 +32,15 @@
             <th scope="col">Name</th>
             <th scope="col">Rental Per Day</th>
             <th scope="col">Fine Per Day</th>
+            <th scope="col">Availability</th>
         </tr>
     </thead>
     <tbody class="pt-2">
-        <tr *ngFor="let customer of customerList">
-            <th scope="row">{{customer.customerId}}</th>
-            <td>{{customer.name}}</td>
-            <td>{{customer.city}}</td>
-            <td>{{customer.contact}}</td>
+        <tr *ngFor="let items of itemList">
+            <th scope="row">{{items.itemId}}</th>
+            <td>{{items.name}}</td>
+            <td>{{items.rentalPerDay}}</td>
+            <td>{{items.finePerDay}}</td>
             <td><button  data-bs-toggle="modal"  [attr.data-bs-target]="'#exampleModalLong'"
                     class="btn btn-primary "><i class="bi bi-gear"></i></button></td>
             <td><button  class="btn btn-danger"><i class="bi bi-trash"></i></button>
@@ -47,3 +48,120 @@
         </tr>
 
 </table>
+
+
+
+<!-- Modal Component ////////////////////////////////////////////////// -->
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Update Employee Details</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container pt-0">
+                    <div class="row pt-2">
+                        <div class="col-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="firstName" class="form-label">First Name</label>
+                                            <input id="firstName" [(ngModel)]="employee.firstName" value="{{selectedEmployee.firstName}}" type="text"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <input id="lastName" [(ngModel)]="employee.lastName" value="{{selectedEmployee.lastName}}" type="text"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container pt-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="div">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input id="address" [(ngModel)]="employee.address" value="{{selectedEmployee.address}}" type="text"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="container pt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="age" class="form-label">Age</label>
+                                            <input id="age" [(ngModel)]="employee.age" value="{{selectedEmployee.age}}" type="number"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                                            <input id="phoneNumber" [(ngModel)]="employee.phoneNumber" value="{{selectedEmployee.phoneNumber}}" type="number"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container pt-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="div ">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input id="email" [(ngModel)]="employee.email"  type="text" value="{{selectedEmployee.email}}" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="container pt-2">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="job-role-id" class="form-label">Job role</label>
+                                            <select id="job-role-id" [(ngModel)]="employee.roleId" value="{{selectedEmployee.roleId}}" class="form-select">
+                                                <option value="J100">Director</option>
+                                                <option value="J101">HR Manager</option>
+                                                <option value="J102">Software Engineer</option>
+                                                <option value="J103">A.S.Engineer</option>
+                                                <option value="J104">Senior Software Engineer</option>
+                                                <option value="J105">Tech Lead</option>
+                                                <option value="J106">Engineering Manager</option>
+                                                <option value="J107">Accountant</option>
+                                                <option value="J108">Clerk</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="div">
+                                            <label for="department-id" class="form-label">Department</label>
+                                            <select id="department-id" value="{{selectedEmployee.departmentId}}" [(ngModel)]="employee.departmentId"
+                                                class="form-select">
+                                                <option value="D0">Accountant Department</option>
+                                                <option value="D1">Engineering Department</option>
+                                                <option value="D2">HR Department</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="loadEmployees()" class="btn btn-secondary close" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="updateEmployee()" data-bs-dismiss="modal" class="btn btn-primary">Update Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
